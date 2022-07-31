@@ -16,3 +16,8 @@ refs.list.insertAdjacentHTML('afterbegin', contactList.join(''));
 // localStorage.setItem('contacts', JSON.stringify(data));
 
 // console.log(JSON.parse(localStorage.getItem('contacts')));
+const formData = localStorage.getItem(keys.FORM_DATA);
+if (JSON.parse(formData)) {
+    refs.form.elements.name.value = JSON.parse(formData).name;
+    refs.form.elements.number.value = JSON.parse(formData).number;
+}
