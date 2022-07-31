@@ -4,8 +4,12 @@ import refs from './js/refs';
 
 import './js/submit-form';
 import './js/delete-button-event';
+import keys from './js/local-storage-keys';
 
-const contactList = data.map(contact => createMarkup(contact));
+const source = localStorage.getItem(keys.CONTACTS);
+const sourceParse = JSON.parse(source);
+
+const contactList = sourceParse ? sourceParse.map(contact => createMarkup(contact)) : data.map(contact => createMarkup(contact));
 
 refs.list.insertAdjacentHTML('afterbegin', contactList.join(''));
 
