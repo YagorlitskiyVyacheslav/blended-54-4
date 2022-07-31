@@ -9,7 +9,7 @@ import keys from './js/local-storage-keys';
 const source = localStorage.getItem(keys.CONTACTS);
 const sourceParse = JSON.parse(source);
 
-const contactList = sourceParse ? sourceParse.map(contact => createMarkup(contact)) : data.map(contact => createMarkup(contact));
+const contactList = (sourceParse ?? data).map(contact => createMarkup(contact));
 
 refs.list.insertAdjacentHTML('afterbegin', contactList.join(''));
 
