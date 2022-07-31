@@ -2,6 +2,7 @@ import refs from './refs';
 import data from './data';
 import { nanoid } from 'nanoid';
 import createMarkup from './createMarkup';
+import keys from './local-storage-keys.js';
 
 const submitForm = event => {
   event.preventDefault();
@@ -15,7 +16,12 @@ const submitForm = event => {
     'beforeend',
     createMarkup(data[data.length - 1])
   );
+
+  localStorage.setItem(keys.CONTACTS, JSON.stringify(data));
+  
   event.currentTarget.reset();
+
+  
 };
 
 refs.form.addEventListener('submit', submitForm);
