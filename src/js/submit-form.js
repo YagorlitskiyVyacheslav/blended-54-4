@@ -29,8 +29,8 @@ const submitForm = event => {
 refs.form.addEventListener('submit', submitForm);
 
 const formData = { name: '', number: '' };
-const onChangeInput = e => {
-  console.log(e.target);
+
+const onChangeInput = e => {  
   formData[e.target.name] = e.target.value;
   localStorage.setItem(keys.FORM_DATA, JSON.stringify(formData));
 };
