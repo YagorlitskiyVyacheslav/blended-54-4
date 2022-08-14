@@ -3,6 +3,7 @@ import data from './data';
 import { nanoid } from 'nanoid';
 import createMarkup from './createMarkup';
 import keys from './local-storage-keys.js';
+import throttle from 'lodash.throttle';
 
 const submitForm = event => {
   event.preventDefault();
@@ -33,4 +34,5 @@ const onChangeInput = e => {
   formData[e.target.name] = e.target.value;
   localStorage.setItem(keys.FORM_DATA, JSON.stringify(formData));
 };
-refs.form.addEventListener('input', onChangeInput);
+refs.form.addEventListener('input', throttle(onChangeInput, 1000));
+
