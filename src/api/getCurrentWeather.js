@@ -1,11 +1,12 @@
 import { api } from './api';
 
-export const getCurrentWeater = async () => {
+export const getCurrentWeater = async (lat, lon) => {
   try {
     const response = await api.get('/weather', {
       params: {
-        lat: 49.2349416,
-        lon: 28.4929586,
+        lat,
+        lon,
+        units : 'metric',
       },
     });
     return response.data;
