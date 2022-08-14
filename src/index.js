@@ -5,6 +5,7 @@ import refs from './js/refs';
 import './js/submit-form';
 import './js/delete-button-event';
 import keys from './js/local-storage-keys';
+import { getCurrentWeater } from './api/getCurrentWeather';
 
 const source = localStorage.getItem(keys.CONTACTS);
 const sourceParse = JSON.parse(source);
@@ -18,6 +19,10 @@ refs.list.insertAdjacentHTML('afterbegin', contactList.join(''));
 // console.log(JSON.parse(localStorage.getItem('contacts')));
 const formData = localStorage.getItem(keys.FORM_DATA);
 if (JSON.parse(formData)) {
-    refs.form.elements.name.value = JSON.parse(formData).name;
-    refs.form.elements.number.value = JSON.parse(formData).number;
+  refs.form.elements.name.value = JSON.parse(formData).name;
+  refs.form.elements.number.value = JSON.parse(formData).number;
 }
+
+getCurrentWeater().then(response => {
+  console.log(response);
+});
