@@ -89,3 +89,15 @@ body {
     color: rgb(245, 122, 122);
   }
 }
+
+.five-days-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  &__item {
+    flex-basis: calc((100% - 40px) / 3);
+  }
+}
