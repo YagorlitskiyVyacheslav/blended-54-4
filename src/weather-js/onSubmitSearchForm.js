@@ -1,4 +1,5 @@
 import { getCurrentWeatherByName } from '../api/getCurrentWeatherByName';
+import createCurrentWeatherMarkup from '../templates/createCurrentWeatherMarkup.hbs';
 
 export const onSubmitSearchForm = event => {
   event.preventDefault();
@@ -9,5 +10,5 @@ export const onSubmitSearchForm = event => {
     return;
   }
 
-  getCurrentWeatherByName(cityName).then(data => console.log(data));
+  getCurrentWeatherByName(cityName).then(createCurrentWeatherMarkup);
 };

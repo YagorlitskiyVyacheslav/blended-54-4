@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import { createCurrentWeatherMarkup } from './createCurrentWeatherMarkup';
+import createCurrentWeatherMarkup from '../templates/createCurrentWeatherMarkup.hbs';
 
 import { getCurrentWeather } from '../api/getCurrentWeather';
 import { onSubmitSearchForm } from './onSubmitSearchForm';
