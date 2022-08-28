@@ -1,12 +1,21 @@
-import { refs } from "./refs";
-import { createCurrentWeatherMarkup } from './createCurrentWeatherMarkup'
+import { refs } from './refs';
+import { createCurrentWeatherMarkup } from './createCurrentWeatherMarkup';
 
-import {getCurrentWeather} from "../api/getCurrentWeather"
+import { getCurrentWeather } from '../api/getCurrentWeather';
+import { onSubmitSearchForm } from './onSubmitSearchForm';
 
-const successGetCurrentPosition = (geolocation) => {
-    getCurrentWeather(geolocation.coords.latitude, geolocation.coords.longitude).then(data => {
-     refs.weatherApp.insertAdjacentHTML('beforeend', createCurrentWeatherMarkup(data))
- })
-}
+const successGetCurrentPosition = geolocation => {
+  getCurrentWeather(
+    geolocation.coords.latitude,
+    geolocation.coords.longitude
+  ).then(data => {
+    refs.weatherApp.insertAdjacentHTML(
+      'beforeend',
+      createCurrentWeatherMarkup(data)
+    );
+  });
+};
 
-console.log(navigator.geolocation.getCurrentPosition(successGetCurrentPosition))
+navigator.geolocation.getCurrentPosition(successGetCurrentPosition);
+
+refs.searchForm.addEventListener('submit', onSubmitSearchForm);

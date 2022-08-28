@@ -1,4 +1,4 @@
 export const refs = {
-    weatherApp: document.getElementById('weather-app'),
-    
-}
+  weatherApp: document.getElementById('weather-app'),
+  searchForm: document.getElementById('search-form'),
+};
