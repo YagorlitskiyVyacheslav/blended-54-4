@@ -1,5 +1,6 @@
 import { getCurrentWeatherByName } from '../api/getCurrentWeatherByName';
-
+import createCurrentWeatherMarkup from '../templates/createCurrentWeatherMarkup.hbs';
+import { refs } from './refs';
 export const onSubmitSearchForm = event => {
   event.preventDefault();
 
@@ -9,5 +10,7 @@ export const onSubmitSearchForm = event => {
     return;
   }
 
-  getCurrentWeatherByName(cityName).then(data => console.log(data));
+  getCurrentWeatherByName(cityName).then(data => {
+    refs.weatherContainer.innerHTML = createCurrentWeatherMarkup(data);
+  });
 };

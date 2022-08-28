@@ -1,5 +1,5 @@
 import { refs } from './refs';
-import { createCurrentWeatherMarkup } from './createCurrentWeatherMarkup';
+import createCurrentWeatherMarkup from '../templates/createCurrentWeatherMarkup.hbs';
 
 import { getCurrentWeather } from '../api/getCurrentWeather';
 import { onSubmitSearchForm } from './onSubmitSearchForm';
@@ -9,10 +9,7 @@ const successGetCurrentPosition = geolocation => {
     geolocation.coords.latitude,
     geolocation.coords.longitude
   ).then(data => {
-    refs.weatherApp.insertAdjacentHTML(
-      'beforeend',
-      createCurrentWeatherMarkup(data)
-    );
+    refs.weatherContainer.innerHTML = createCurrentWeatherMarkup(data);
   });
 };
 
