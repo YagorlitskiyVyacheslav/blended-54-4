@@ -3,10 +3,12 @@ import createCurrentWeatherMarkup from '../templates/createCurrentWeatherMarkup.
 import { getForecastByName } from '../api/getForecastByName';
 import fiveDaysMarkup from '../templates/fiveDaysWeather.hbs';
 import { refs } from './refs';
+
+export let cityName = null
 export const onSubmitSearchForm = event => {
   event.preventDefault();
 
-  const cityName = event.currentTarget.elements.city_name.value;
+   cityName = event.currentTarget.elements.city_name.value;
   if (!cityName) {
     alert('Please, enter name of city.');
     return;
@@ -16,7 +18,5 @@ export const onSubmitSearchForm = event => {
     refs.weatherContainer.innerHTML = createCurrentWeatherMarkup(data);
   });
 
-  getForecastByName(cityName).then(data => {console.log(data);
-    refs.fiveDaysContainer.innerHTML = fiveDaysMarkup(data);
-  })
+  refs.fiveDaysContainer.innerHTML="";
 };

@@ -2,8 +2,11 @@ import { refs } from './refs';
 import createCurrentWeatherMarkup from '../templates/createCurrentWeatherMarkup.hbs';
 import { getForecast } from '../api/getForecast';
 import { getCurrentWeather } from '../api/getCurrentWeather';
-import { onSubmitSearchForm } from './onSubmitSearchForm';
+import { onSubmitSearchForm, cityName } from './onSubmitSearchForm';
 import fiveDaysWeather from '../templates/fiveDaysWeather.hbs'
+import { getForecastByName } from '../api/getForecastByName';
+import { getCurrentWeatherByName } from '../api/getCurrentWeatherByName';
+
 let lat = null;
 let lon = null;
 
@@ -27,6 +30,10 @@ refs.searchForm.addEventListener('submit', onSubmitSearchForm);
 
 function onClickFiveDays() {
   refs.weatherContainer.innerHTML = '';
+  if(cityName){
+    getForecastByName(cityName).then(data => { refs.fiveDaysContainer.innerHTML = fiveDaysWeather(data) })
+    return
+  }
   getForecast(
     lat,
     lon
@@ -34,6 +41,11 @@ function onClickFiveDays() {
 }
 function onClickToday() {
   refs.fiveDaysContainer.innerHTML = '';
+  if(cityName){
+    getCurrentWeatherByName(cityName).then(data => { refs.fiveDaysContainer.innerHTML = fiveDaysWeather(data) })
+    return
+  }
+  
   getCurrentWeather(
     lat,
     lon
