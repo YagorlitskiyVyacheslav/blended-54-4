@@ -9,10 +9,7 @@ const successGetCurrentPosition = geolocation => {
     geolocation.coords.latitude,
     geolocation.coords.longitude
   ).then(data => {
-    refs.weatherApp.insertAdjacentHTML(
-      'beforeend',
-      createCurrentWeatherMarkup(data)
-    );
+    refs.weatherContainer.innerHTML = createCurrentWeatherMarkup(data);
   });
 };
 
