@@ -5,7 +5,6 @@ import refs from './js/refs';
 import './js/submit-form';
 import './js/delete-button-event';
 import keys from './js/local-storage-keys';
-import { getCurrentWeater } from './api/getCurrentWeather';
 
 const source = localStorage.getItem(keys.CONTACTS);
 const sourceParse = JSON.parse(source);
@@ -22,7 +21,3 @@ if (JSON.parse(formData)) {
   refs.form.elements.name.value = JSON.parse(formData).name;
   refs.form.elements.number.value = JSON.parse(formData).number;
 }
-
-getCurrentWeater().then(response => {
-  console.log(response);
-});
