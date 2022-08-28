@@ -1,16 +1,20 @@
 import { refs } from './refs';
 import createCurrentWeatherMarkup from '../templates/createCurrentWeatherMarkup.hbs';
-
+import { getForecast } from '../api/getForecast';
 import { getCurrentWeather } from '../api/getCurrentWeather';
 import { onSubmitSearchForm } from './onSubmitSearchForm';
 
-const successGetCurrentPosition = geolocation => {
+const successGetCurrentPosition = ({ coords:{latitude, longitude}}) => {
   getCurrentWeather(
-    geolocation.coords.latitude,
-    geolocation.coords.longitude
+    latitude,
+    longitude
   ).then(data => {
     refs.weatherContainer.innerHTML = createCurrentWeatherMarkup(data);
   });
+  getForecast(
+    latitude,
+    longitude
+  ).then(data=>{console.log(data)})
 };
 
 navigator.geolocation.getCurrentPosition(successGetCurrentPosition);
